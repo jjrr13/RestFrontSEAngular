@@ -1,0 +1,62 @@
+<div class="card bg-dark text-white">
+  <div class="card-header">{{ titulo }}</div>
+  <div class="card-body">
+
+    <form>
+      <div class="form-group row">
+        <label for="nombre" class="col-form-label col-sm-2">Nombre</label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control" [(ngModel)]="almacen.nombre" name="nombre">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="descripcion" class="col-form-label col-sm-2">Descripcion</label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control" [(ngModel)]="almacen.descripcion" name="descripcion">
+        </div>
+      </div>
+
+
+      <div class="form-group row" >
+        <label for="tipo_logistica" class="col-form-label col-sm-2">Tipo</label>
+        <div class="col-sm-6">
+          <select class="form-control" [(ngModel)]="almacen.tipoLogistica"   name="tipoLogistica" >
+            <option value="">Seleccione</option> 
+            <option *ngFor="let item of keys()" value="{{item}}">{{item}}</option>
+          </select>
+        </div>
+      </div>
+        
+      <div class="form-group row" *ngIf="!almacen.id">
+        <label for="tipo_logistica" class="col-form-label col-sm-2">Dueño</label>
+        <div class="col-sm-6">
+          <select class="form-control" [(ngModel)]="almacen.fk_id_cliente" name="clientes" >
+              <option value="">Seleccione</option>
+                <option *ngFor="let cliente of clientesList" [value]="cliente.id">
+                    {{ cliente.nombre }}
+                  </option>
+            </select>
+          </div>
+        </div>
+
+      <div class="form-group row" *ngIf="almacen.id">
+        <label for="enabled" class="col-form-label col-sm-2">Enabled</label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control" [(ngModel)]="almacen.enabled" name="enabled">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-sm-6">
+          <button class="btn btn-primary" role="button" (click)='create()' *ngIf="!almacen.id else elseBlock">Crear</button>
+
+          <ng-template #elseBlock>
+            <button class="btn btn-primary" role="button" (click)='update()'>Editar</button>
+          </ng-template>
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>

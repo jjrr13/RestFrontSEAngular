@@ -1,0 +1,99 @@
+<div class="card border-primary mb-3">
+   <div class="card-body text-primary">
+      <h5 class="card-title">Datos del cliente</h5>
+
+        <ul class="list-group my-2">
+            <li class="list-group-item list-group-item-primary" >Datos basicos</li>
+            <li class="list-group-item" > {{ cliente.nombre }} </li>
+            <li class="list-group-item"> {{ cliente.apellido }} </li>
+            <li class="list-group-item"> {{ cliente.identificacion }} </li>
+            <li class="list-group-item"> {{ cliente.email }} </li>
+            <li class="list-group-item"> {{ cliente.createAt }} </li>
+        </ul>
+
+        <ul class="list-group my-2">
+            <li class="list-group-item list-group-item-primary" >Entregas del cliente</li>
+            <li class="list-group-item" > 
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>nombre</th>
+                        <th>descripcion</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let entrega of entregasList">
+                        <td>{{ entrega.id }}</td>
+                        <td>{{ entrega.numero_guia }}</td>
+                        <td>{{ entrega.identificacion_transporte }}</td>
+                        <td>{{ entrega.precio }}</td>
+                        <td>{{ entrega.tipoLogistica }}</td>
+                        <td>
+                            <button type="button" name="editar" [routerLink]="['/entregas/form', entrega.id]" class="btn btn-primary btn-sm">ver</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </li>
+        </ul>
+
+        <ul class="list-group my-2">
+            <li class="list-group-item list-group-item-primary" >Productos del cliente</li>
+            <li class="list-group-item" > 
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>nombre</th>
+                        <th>descripcion</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let producto of productosList">
+                        <td>{{ producto.id }}</td>
+                        <td>{{ producto.nombre }}</td>
+                        <td>{{ producto.descripcion }}</td>
+                        <td>{{ producto.tipoLogistica }}</td>
+                        <td>
+                            <button type="button" name="editar" [routerLink]="['/productos/form', producto.id]" class="btn btn-primary btn-sm">ver</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </li>
+        </ul>
+
+      
+
+        <ul class="list-group my-2">
+            <li class="list-group-item list-group-item-primary" >Almacenes del cliente</li>
+            <li class="list-group-item" > 
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>nombre</th>
+                        <th>descripcion</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let almacen of almacenesList">
+                        <td>{{ almacen.id }}</td>
+                        <td>{{ almacen.nombre }}</td>
+                        <td>{{ almacen.descripcion }}</td>
+                        <td>{{ almacen.tipoLogistica }}</td>
+                        <td>
+                            <button type="button" name="editar" [routerLink]="['/almacenes/form', almacen.id]" class="btn btn-primary btn-sm">ver</button>
+                        </td>
+                        
+                    </tr>
+                    </tbody>
+                </table>
+            </li>
+        </ul>
+
+        
+
+   </div>
+</div>

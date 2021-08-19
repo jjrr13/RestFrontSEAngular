@@ -1,0 +1,96 @@
+<div class="card border-primary mb-3">
+   <div class="card-body text-primary">
+      <h5 class="card-title">Entrega</h5>
+
+      <style>
+            table{
+                width: 100%;
+                border-collapse:collapse;
+            }
+
+            table tr{
+                width: 100%;
+            }
+
+            table tr td:first-child{
+                width: 35%;
+                text-align: left;
+            }
+        </style>
+
+        <ul class="list-group my-2">
+            <li class="list-group-item list-group-item-primary" >Datos de la entrega</li>
+            <!-- <li class="list-group-item" > {{ entrega.cantidad_producto }} </li>
+            <li class="list-group-item"> {{ entrega.descuento }} </li>
+            <li class="list-group-item"> {{ entrega.fecha_entraga }} </li>
+            <li class="list-group-item"> {{ entrega.fecha_registro }} </li>
+            <li class="list-group-item"> {{ entrega.identificacion_transporte }} </li>
+            <li class="list-group-item"> {{ entrega.numero_guia }} </li>
+            <li class="list-group-item"> {{ entrega.nombreCliente }} </li>
+            <li class="list-group-item"> {{ entrega.tipoLogistica }} </li>
+            <li class="list-group-item"> {{ entrega.nombreProducto }} </li>
+            <li class="list-group-item"> {{ entrega.nombreAlmacen }} </li>
+            <li class="list-group-item"> {{ entrega.createAt }} </li>
+            <li class="list-group-item"> 
+                <button type="button" name="editar" [routerLink]="['/entregas/form', entrega.id]" class="btn btn-primary btn-sm">editar</button>
+            </li> -->
+
+        </ul>
+        <table class="table table-hover table-bordered my-2">
+            <tbody>
+                <tr >
+                    <td >Cantidad Producto</td>
+                    <td >{{ entrega.cantidad_producto }}</td>
+                </tr>
+                <tr >
+                    <td >Descuento</td>
+                    <td >{{ entrega.descuento }}</td>
+                </tr>
+                <tr >
+                    <td >Fecha de entrega</td>
+                    <td >{{ entrega.fecha_entraga }}</td>
+                </tr>
+                <tr >
+                    <td >Fecha de registro</td>
+                    <td >{{ entrega.fecha_registro }}</td>
+                </tr>
+                <tr >
+                    <td >Identificacion (Flota/Vehiculo)</td>
+                    <td >{{ entrega.identificacion_transporte }}</td>
+                </tr>
+                <tr >
+                    <td >Numero de guia</td>
+                    <td >{{ entrega.numero_guia }}</td>
+                </tr>
+                <tr >
+                    <td >Nombre de cliente</td>
+                    <td >{{ entrega.nombreCliente }}</td>
+                </tr>
+                <tr >
+                    <td >Tipo de envio (Terrestre/Maritimo)</td>
+                    <td >{{ entrega.tipoLogistica }}</td>
+                </tr>
+                <tr >
+                    <td >Nombre Producto</td>
+                    <td >{{ entrega.nombreProducto }}</td>
+                </tr>
+                <tr >
+                    <td >Nombre de alamcen (Bodega/Puerto)</td>
+                    <td >{{ entrega.nombreAlmacen }}</td>
+                </tr>
+                <tr >
+                    <td >Creado</td>
+                    <td >{{ entrega.createAt }}</td>
+                </tr>
+
+                <tr >
+                    <td ></td>
+                    <td >
+                        <button type="button" name="editar" [routerLink]="['/entregas/form', entrega.id]" class="btn btn-primary btn-sm">editar</button>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+   </div>
+</div>

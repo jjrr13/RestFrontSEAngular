@@ -1,0 +1,8 @@
+.carousel-caption {
+    bottom: 14.25rem;
+}
+
+.carousel-item img{
+    margin: auto;
+    width: 88%!important;
+}

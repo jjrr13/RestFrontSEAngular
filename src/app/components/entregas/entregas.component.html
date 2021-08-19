@@ -1,0 +1,50 @@
+<div class="card border-primary mb-3">
+    <div class="card-header">Entregas</div>
+    <div class="card-body text-primary">
+        <h5 class="card-title">Listado de entregas</h5>
+        <div class="my-2 text-left">
+            <button class="btn btn-rounded btn-success" type="button" [routerLink]="['/entregas/form']">
+                Crear Entrega
+            </button>
+        </div>
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>no. guia</th>
+                <th>id vehiculo</th>
+                <th>precio</th>
+                <th>cliente</th>
+                <th>tipo</th>
+                <th>fecha</th>
+                <th>
+                    editar
+                </th>
+                <th>
+                    eliminar
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let entrega of entregas">
+                <th>
+                    <button type="button" name="editar" [routerLink]="['/entregas/details', entrega.id]" class="btn btn-primary btn-sm">{{ entrega.id }}</button>
+                </th>
+                <td>{{ entrega.numero_guia }}</td>
+                <td>{{ entrega.identificacion_transporte }}</td>
+                <td>{{ entrega.precio }}</td>
+                <td>{{ entrega.nombreCliente }}</td>
+                <td>{{ entrega.tipoLogistica }}</td>
+                <td>{{ entrega.createAt }}</td>
+                <td>
+                    <button type="button" name="editar" [routerLink]="['/entregas/form', entrega.id]" class="btn btn-primary btn-sm">editar</button>
+                </td>
+                <td>
+                    <button type="button" name="eliminar" (click)='delete(entrega)' class="btn btn-danger btn-sm">eliminar</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    
+    </div>
+</div>

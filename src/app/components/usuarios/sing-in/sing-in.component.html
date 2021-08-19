@@ -1,0 +1,38 @@
+<div class="container py-4">
+
+    <div *ngIf="isLoginError" class="red-text center error-message">
+        <i class="alert alert-danger">error</i> Incorrect username or password
+    </div>
+
+    <div class="card border-primary text-center">
+        <div class="card-header" >
+            <h2>Por favor Inicie Session!</h2>
+        </div>
+        <div class="card-body">
+
+            <form  #loginForm="ngForm" class="col s12 white" (ngSubmit)="OnSubmit(UserName.value,Password.value)">
+
+                <div class="row  mt-3">
+                    <div class="form-group col-sm-6 m-auto">
+                        <input class="form-control" type="text" #UserName ngModel name="UserName" placeholder="Username" required autofocus>
+                    </div>
+                </div>
+                <div class="row  mt-3">
+                    <div class="form-group col-sm-6 m-auto">
+                        <input class="form-control" type="password" #Password ngModel name="Password" placeholder="*******" required>
+                    </div>
+                </div>
+                <div class="row mt-3 ">
+                    <div class="form-group col-sm-6  m-auto">
+                        <button [disabled]="!loginForm.valid" class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+                    </div>
+                </div>
+                
+            </form>
+
+        </div>
+
+    </div>
+
+
+</div>
