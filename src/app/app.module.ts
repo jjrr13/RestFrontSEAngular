@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router'
 
 import { AppComponent } from './app.component';
+import { GlobalService } from './services/global.service';
 
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
@@ -76,13 +77,14 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     //*/
   ],
   providers: [
+    GlobalService,
     EntregaService,
     AlmacenService,
     ProductoService,
     ClienteService,
     UsuarioService,
     UserService
-    /*
+    // /*
     ,
     AuthGuard,
     {

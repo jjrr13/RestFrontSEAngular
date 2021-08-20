@@ -29,9 +29,10 @@ export const appRoutes: Routes = [
     { path : '', redirectTo:'/login', pathMatch : 'full'}
     */
 
-    //{path: '', redirectTo: '/login', pathMatch: 'full'},
+    {path: '', redirectTo: '/login', pathMatch: 'full'},
     {path: 'login', component: SignInComponent},
     {path: 'home', component: HomeComponent, canActivate:[AuthGuard] },
+    // {path: 'home', component: HomeComponent },
     {path: 'clientes', component: ClientesComponent},
     {path: 'clientes/form', component: FormComponent},
     {path: 'clientes/form/:id', component: FormComponent},

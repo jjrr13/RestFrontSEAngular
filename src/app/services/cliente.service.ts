@@ -5,43 +5,44 @@ import { Observable } from 'rxjs';
 import { of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { GlobalService } from './global.service';
 
 @Injectable()
 export class ClienteService {
-  private urlEndPoint: string = 'http://localhost:8080/api/clientes';
+  private urlEndPoint: string = '/api/clientes';
 
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private global: GlobalService) { }
 
   getClientesToSelect(): Observable<Cliente[]> {
     //return of(CLIENTES);
-    return this.http.get(`${this.urlEndPoint}/listSelect`).pipe(
+    return this.http.get(`${this.global.getRutaBase() + this.urlEndPoint}/listSelect`).pipe(
       map(response => response as Cliente[])
     );
   }
 
   getClientes(): Observable<Cliente[]> {
     //return of(CLIENTES);
-    return this.http.get(`${this.urlEndPoint}/listar`).pipe(
+    return this.http.get(`${this.global.getRutaBase() + this.urlEndPoint}/listar`).pipe(
       map(response => response as Cliente[])
     );
   }
 
   create(cliente: Cliente) : Observable<Cliente> {
-    return this.http.post<Cliente>(`${this.urlEndPoint}/`, cliente, {headers: this.httpHeaders})
+    return this.http.post<Cliente>(`${this.global.getRutaBase() + this.urlEndPoint}/`, cliente, {headers: this.httpHeaders})
   }
 
   getCliente(id: any): Observable<Cliente>{
-    return this.http.get<Cliente>(`${this.urlEndPoint}/${id}`)
+    return this.http.get<Cliente>(`${this.global.getRutaBase() + this.urlEndPoint}/${id}`)
   }
 
   update(cliente: Cliente): Observable<Cliente>{
-    return this.http.put<Cliente>(`${this.urlEndPoint}/`, cliente, {headers: this.httpHeaders})
+    return this.http.put<Cliente>(`${this.global.getRutaBase() + this.urlEndPoint}/`, cliente, {headers: this.httpHeaders})
   }
 
   delete(id: number): Observable<Cliente>{
-    return this.http.delete<Cliente>(`${this.urlEndPoint}/${id}`, {headers: this.httpHeaders})
+    return this.http.delete<Cliente>(`${this.global.getRutaBase() + this.urlEndPoint}/${id}`, {headers: this.httpHeaders})
   }
 
 }

@@ -10,6 +10,7 @@ import { AlmacenService } from './../../services/almacen.service';
 import {Router, ActivatedRoute} from '@angular/router'
 import swal from 'sweetalert2'
 import { TipoLogistica } from '../../models/tipo_logistica';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-form-entrega',
@@ -75,18 +76,22 @@ export class FormEntregaComponent implements OnInit {
       .subscribe(entrega => {
         this.router.navigate(['/entregas'])
         swal('Nuevo entrega', `Entrega ${this.entrega.numero_guia} creado con éxito!`, 'success')
+      },
+      (err : HttpErrorResponse)=>{
+        swal('Error ' + err.status, `Tuvimos problemas al realizar la operacion!  . Intente de nuevo o contacte al administrador del sitio`, 'error')
       }
-      );
+    );
   }
 
   update():void{
     this.entregaService.update(this.entrega)
-    .subscribe( entrega => {
-      this.router.navigate(['/entregas'])
-      swal('Entrega Actualizado', `Entrega ${this.entrega.numero_guia} actualizado con éxito!`, 'success')
-    }
-
-    )
+      .subscribe( entrega => {
+        this.router.navigate(['/entregas'])
+        swal('Entrega Actualizado', `Entrega ${this.entrega.numero_guia} actualizado con éxito!`, 'success')
+      },
+      (err : HttpErrorResponse)=>{
+        swal('Error ' + err.status, `Tuvimos problemas al realizar la operacion!  . Intente de nuevo o contacte al administrador del sitio`, 'error')
+      }
+    );
   }
-
 }

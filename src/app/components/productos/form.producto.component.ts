@@ -6,6 +6,7 @@ import { ClienteService } from './../../services/cliente.service';
 import {Router, ActivatedRoute} from '@angular/router'
 import swal from 'sweetalert2'
 import { TipoLogistica } from '../../models/tipo_logistica';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-form-producto',
@@ -41,11 +42,15 @@ export class FormProductoComponent implements OnInit {
 
   cargarProducto(): void{
     this.activatedRoute.params.subscribe(params => {
-      let id = params['id']
-      if(id){
-        this.productoService.getProducto(id).subscribe( (producto) => this.producto = producto)
+        let id = params['id']
+        if(id){
+          this.productoService.getProducto(id).subscribe( (producto) => this.producto = producto)
+        }
+      },
+      (err : HttpErrorResponse)=>{
+        swal('Error ' + err.status, `Tuvimos problemas al realizar la operacion!  . Intente de nuevo o contacte al administrador del sitio`, 'error')
       }
-    })
+    );
   }
 
   create(): void {
@@ -55,19 +60,24 @@ export class FormProductoComponent implements OnInit {
     this.productoService.create(this.producto)
       .subscribe(producto => {
         this.router.navigate(['/productos'])
-        swal('Nuevo producto', `Producto ${producto.nombre} creado con éxito!`, 'success')
+        swal('Nuevo producto', `Producto ${this.producto.nombre} creado con éxito!`, 'success')
+      },
+      (err : HttpErrorResponse)=>{
+        swal('Error ' + err.status, `Tuvimos problemas al realizar la operacion!  . Intente de nuevo o contacte al administrador del sitio`, 'error')
       }
-      );
+    );
   }
 
   update():void{
     this.productoService.update(this.producto)
-    .subscribe( producto => {
-      this.router.navigate(['/productos'])
-      swal('Producto Actualizado', `Producto ${producto.nombre} actualizado con éxito!`, 'success')
-    }
-
-    )
+      .subscribe( producto => {
+        this.router.navigate(['/productos'])
+        swal('Producto Actualizado', `Producto ${this.producto.nombre} actualizado con éxito!`, 'success')
+      },
+      (err : HttpErrorResponse)=>{
+        swal('Error ' + err.status, `Tuvimos problemas al realizar la operacion!  . Intente de nuevo o contacte al administrador del sitio`, 'error')
+      }
+    );
   }
 
 }

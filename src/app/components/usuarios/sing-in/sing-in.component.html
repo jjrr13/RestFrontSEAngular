@@ -1,12 +1,16 @@
 <div class="container py-4">
 
-    <div *ngIf="isLoginError" class="red-text center error-message">
-        <i class="alert alert-danger">error</i> Incorrect username or password
+    <div *ngIf="isLoginError" class="alert alert-danger">
+        <i class="fas fa-times"></i>Incorrect username or password
+    </div>
+
+    <div *ngIf="isServerError" class="alert alert-danger">
+        <i class="fas fa-times"></i>Bad authentication
     </div>
 
     <div class="card border-primary text-center">
         <div class="card-header" >
-            <h2>Por favor Inicie Session!</h2>
+            <h2>Hola, por favor Inicie Session!.</h2>
         </div>
         <div class="card-body">
 

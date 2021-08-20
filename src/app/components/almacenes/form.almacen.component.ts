@@ -6,6 +6,7 @@ import { ClienteService } from './../../services/cliente.service';
 import {Router, ActivatedRoute} from '@angular/router'
 import swal from 'sweetalert2'
 import { TipoLogistica } from '../../models/tipo_logistica';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-form-almacen',
@@ -40,12 +41,17 @@ export class FormAlmacenComponent implements OnInit {
   }
 
   cargarAlmacen(): void{
-    this.activatedRoute.params.subscribe(params => {
-      let id = params['id']
-      if(id){
-        this.almacenService.getAlmacen(id).subscribe( (almacen) => this.almacen = almacen)
-      }
-    })
+      this.activatedRoute.params
+        .subscribe(params => {
+          let id = params['id']
+          if(id){
+            this.almacenService.getAlmacen(id).subscribe( (almacen) => this.almacen = almacen)
+          }
+        },
+        (err : HttpErrorResponse)=>{
+          swal('Error ' + err.status, `Tuvimos problemas al realizar la operacion!  . Intente de nuevo o contacte al administrador del sitio`, 'error')
+        }
+    );
   }
 
   create(): void {
@@ -55,18 +61,22 @@ export class FormAlmacenComponent implements OnInit {
       .subscribe(almacen => {
         this.router.navigate(['/almacenes'])
         swal('Nuevo almacen', `Almacen ${this.almacen.nombre} creado con éxito!`, 'success')
+      },
+      (err : HttpErrorResponse)=>{
+        swal('Error ' + err.status, `Tuvimos problemas al realizar la operacion!  . Intente de nuevo o contacte al administrador del sitio`, 'error')
       }
-      );
+    );
   }
 
   update():void{
     this.almacenService.update(this.almacen)
-    .subscribe( almacen => {
-      this.router.navigate(['/almacenes'])
-      swal('Almacen Actualizado', `Almacen ${this.almacen.nombre} actualizado con éxito!`, 'success')
-    }
-
-    )
+      .subscribe( almacen => {
+        this.router.navigate(['/almacenes'])
+        swal('Almacen Actualizado', `Almacen ${this.almacen.nombre} actualizado con éxito!`, 'success')
+      },
+      (err : HttpErrorResponse)=>{
+        swal('Error ' + err.status, `Tuvimos problemas al realizar la operacion!  . Intente de nuevo o contacte al administrador del sitio`, 'error')
+      }
+    );
   }
-
 }
